@@ -1,9 +1,18 @@
 import torch
 import numpy as np
 
+from typing import Self, Tuple
+from torch import Tensor
 # reused replay buffer from my ddpg implementation
 class ReplayBuffer:
-    def __init__(self, state_dim, action_dim, buffer_len, device='cpu'):
+    def __init__(
+        self: Self, 
+        state_dim: int, 
+        action_dim: int, 
+        buffer_len: int, 
+        device: str = 'cpu'
+    ) -> None:
+        
         self.capacity = buffer_len
         self.device = device
         self.pointer = 0
@@ -16,13 +25,13 @@ class ReplayBuffer:
         self.dones = torch.zeros((self.capacity, 1) ,dtype=torch.bool,device=self.device)
 
     def update(
-        self, 
-        state, 
-        action, 
-        reward, 
-        next_state, 
-        done
-    ):
+        self: Self, 
+        state: np.ndarray, 
+        action: np.ndarray, 
+        reward: float, 
+        next_state: np.ndarray, 
+        done: float | bool
+    ) -> None:
 
         self.states[self.pointer] = torch.as_tensor(state).to(self.device)
         self.actions[self.pointer] = torch.as_tensor(action).to(self.device) 
@@ -33,7 +42,7 @@ class ReplayBuffer:
         self.pointer = (self.pointer + 1) % self.capacity 
         self.size = min(self.size + 1, self.capacity)
 
-    def sample(self, batch_size):
+    def sample(self: Self, batch_size: int) -> Tuple[Tensor]:
         ind = torch.randint(0, self.size, device=self.device, size=(batch_size,))
         return (
             self.states[ind], 
@@ -43,5 +52,5 @@ class ReplayBuffer:
             self.dones[ind]
         )
         
-    def __len__(self):
+    def __len__(self: Self) -> int:
         return len(self.states)

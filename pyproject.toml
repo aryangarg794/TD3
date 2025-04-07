@@ -9,6 +9,9 @@ dependencies = [
     "matplotlib>=3.10.1",
     "gymnasium[classic-control,mujoco]>=1.1.1",
     "typing>=3.10.0.0",
+    "tensorboard>=2.19.0",
+    "tb-nightly>=2.20.0a20250407",
+    "tqdm>=4.67.1",
 ]
 
 [build-system]
