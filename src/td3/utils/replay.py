@@ -22,7 +22,7 @@ class ReplayBuffer:
         self.actions = torch.zeros((self.capacity, action_dim) ,dtype=torch.float,device=self.device)
         self.rewards = torch.zeros((self.capacity, 1) ,dtype=torch.float,device=self.device)
         self.next_states = torch.zeros((self.capacity, state_dim) ,dtype=torch.float,device=self.device)
-        self.dones = torch.zeros((self.capacity, 1) ,dtype=torch.bool,device=self.device)
+        self.dones = torch.zeros((self.capacity, 1) ,dtype=torch.int,device=self.device)
 
     def update(
         self: Self, 
