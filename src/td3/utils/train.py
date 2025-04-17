@@ -112,7 +112,6 @@ def train(
 
     env.close()
     env_test.close()
-    # agent.save(game_name)
     
     return metrics
 

@@ -221,7 +221,7 @@ class TD3:
     ) -> None:
         saved_model = torch.load(path, weights_only=True)
         self.actor.load_state_dict(saved_model['actor_state_dict'])
-        self.critic.load_state_dict(saved_model['critic_state_dict'])
+        self.critic_1.load_state_dict(saved_model['critic_state_dict'])
         
     def __repr__(self):
         return f'TD3 Agent'
