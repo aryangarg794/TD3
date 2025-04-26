@@ -20,6 +20,8 @@ python3 src/td3/test.py --file [FILEDIR] --env [ENV] [ARGS]
 ----------------------
 ### Examples
 
+Each game was tested on 3 seeds (0, 1, 2). 
+
 | Game | Learning Curve             |  Video Example |
 :------------------:| :-------------------------:|:-------------------------:
 **Pendulum-v1** |![Pendulum LC](lcs/TD3_Pendulum-v1.png)  | ![Video Inv](media/pendulum.gif) 
